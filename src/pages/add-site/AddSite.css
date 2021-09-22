@@ -1,0 +1,36 @@
+.add-site {
+  width: 100%;
+  max-width: 40rem;
+}
+
+.add-site .add-image-container {
+  width: 100%;
+  max-width: 40rem;
+  border-radius: var(--alta-border-radius);
+  border: var(--alta-border);
+  aspect-ratio: 4/3;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.add-site .send-btn {
+  margin-top: 2rem;
+}
+
+.add-site .upload-input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.add-site .cropper {
+  z-index: 51;
+}
+
+.add-site .upload-image-message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

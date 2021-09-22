@@ -1,0 +1,117 @@
+.navbar {
+  height: 4rem;
+  position: fixed;
+  display: flex;
+  left: 0;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  top: 0;
+  z-index: 10001;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dadce0;
+  /* box-shadow: 0px 3px 6px 1px #3333333d; */
+}
+
+.navbar h1 {
+  font-weight: 400;
+  color: #5f6368;
+}
+
+a.add-btn {
+  background-color: var(--alta-primary-color);
+  color: white;
+  display: flex;
+  padding: 0.5rem 2rem;
+  margin-right: 1rem;
+  border-radius: 3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.aside {
+  position: fixed;
+  left: 0;
+  top: 4rem;
+  height: calc(100vh - 4rem);
+  padding: 2rem 0 0;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0rem;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+}
+
+.aside ul {
+  list-style: none;
+}
+
+.aside li {
+  padding: 1rem 0rem 1rem 1rem;
+  margin-bottom: 1rem;
+  color: #444;
+  border-top-right-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+  display: block;
+  min-width: 12rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.selected li,
+.selected li:hover {
+  background-color: white;
+}
+
+.aside li:hover {
+  box-shadow: 0px 1px 3px 1px #3333332e;
+  background-color: rgba(255, 255, 255, 0.849);
+}
+
+.aside li i {
+  margin-right: 1rem;
+}
+
+.side-bar-btn {
+  display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .aside {
+    display: none;
+  }
+
+  .aside.open {
+    width: 100%;
+    display: block;
+    z-index: 999999;
+    transform: translateX(-100%);
+    background-color: white;
+    animation: appear 0.2s ease-in-out forwards;
+  }
+
+  @keyframes appear {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+
+  .side-bar-btn {
+    display: inline-block;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  a.add-btn {
+    padding: 0.65rem 2.25rem;
+  }
+}
+/* <a href='https://www.freepik.com/vectors/design'>Design vector created by stories - www.freepik.com</a> */
+/* <a href='https://www.freepik.com/vectors/computer'>Computer vector created by macrovector - www.freepik.com</a> */

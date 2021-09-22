@@ -1,0 +1,76 @@
+/* lucidCard */
+.card {
+  width: 100%;
+  position: relative;
+  max-width: 640px;
+  background-color: #ffffff;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 1px 3px 1px #3333332e;
+  overflow: hidden;
+}
+
+.card__info {
+  padding: 1rem 1rem 0;
+  border-top: 1px solid #dadce0;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__footer {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.as-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  position: relative;
+}
+
+.lucid {
+  position: relative;
+  overflow: hidden;
+}
+
+.lucid::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(237, 237, 237) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: lucid 1s linear infinite;
+}
+
+@keyframes lucid {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(150%);
+  }
+}
+
+.lucid-card-container {
+  width: 100%;
+  position: relative;
+  max-width: 640px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
