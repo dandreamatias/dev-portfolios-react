@@ -6,6 +6,7 @@ import Favorites from './pages/favorites/Favorites';
 import DailyMixPage from './pages/daily-mix/DailyMix.page';
 import Nav from './components/navbar/Nav';
 import { Toast } from './components/toast/Toast';
+import Admin from './pages/admin/Admin';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path='/favorites'>
           <Favorites />
+        </Route>
+        <Route path='/admin'>
+          <Admin />
         </Route>
         <Route path='/'>
           <Home />

@@ -1,3 +1,3 @@
 export const env = {
-  url: 'https://devportfolios-nest.herokuapp.com/api/v1/',
+  url: 'http://localhost:3333/api/v1/',
 };

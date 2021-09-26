@@ -1,0 +1,22 @@
+.container {
+  padding: 6rem 2rem 0;
+  height: 100vh;
+  display: flex;
+  background-color: #ebebeb;
+  flex-direction: column;
+}
+.buttonContainer {
+  padding: 0 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.cardPreviewContainer {
+  flex: 1;
+  flex-grow: 1;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
