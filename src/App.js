@@ -7,6 +7,7 @@ import DailyMixPage from './pages/daily-mix/DailyMix.page';
 import Nav from './components/navbar/Nav';
 import { Toast } from './components/toast/Toast';
 import Admin from './pages/admin/Admin';
+import Login from './pages/login/Login';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path='/admin'>
           <Admin />
+        </Route>
+        <Route path='/login'>
+          <Login />
         </Route>
         <Route path='/'>
           <Home />

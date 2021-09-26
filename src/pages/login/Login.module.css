@@ -1,0 +1,10 @@
+.main {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  width: 20rem;
+  padding: 1rem;
+}

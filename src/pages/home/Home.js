@@ -35,7 +35,7 @@ export default function Home() {
 
       <div className={style.section}>
         <div className={style.imageSection}>
-          <img className={style.img} src='inspiration.jpg' loading='lazy' alt='person who think' />
+          <img className={style.img} src='inspiration.jpg' alt='person who think' />
         </div>
         <div className={style.Textsection}>
           <h2>Discover.</h2>

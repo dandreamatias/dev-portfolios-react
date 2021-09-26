@@ -52,14 +52,16 @@ export default function Admin() {
 
   return (
     <main className={style.container}>
-      <div className={style.buttonContainer}>
-        <button className='button' onClick={handleApproveClick}>
-          Approve
-        </button>
-        <button className='button' onClick={handleRejectClick} style={{ background: '#cd0f0f' }}>
-          Reject
-        </button>
-      </div>
+      {card && (
+        <div className={style.buttonContainer}>
+          <button className='button' onClick={handleApproveClick}>
+            Approve
+          </button>
+          <button className='button' onClick={handleRejectClick} style={{ background: '#cd0f0f' }}>
+            Reject
+          </button>
+        </div>
+      )}
       <div className={style.cardPreviewContainer}>
         {card && (
           <>
