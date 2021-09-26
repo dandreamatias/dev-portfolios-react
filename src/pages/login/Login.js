@@ -20,6 +20,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem('__token', 'adiwd98u3duaqu73tdq9');
     history.push('/admin');
   };
 

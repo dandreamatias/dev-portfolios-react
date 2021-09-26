@@ -8,6 +8,7 @@ import Nav from './components/navbar/Nav';
 import { Toast } from './components/toast/Toast';
 import Admin from './pages/admin/Admin';
 import Login from './pages/login/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -23,9 +24,9 @@ function App() {
         <Route path='/favorites'>
           <Favorites />
         </Route>
-        <Route path='/admin'>
+        <ProtectedRoute path='/admin'>
           <Admin />
-        </Route>
+        </ProtectedRoute>
         <Route path='/login'>
           <Login />
         </Route>
