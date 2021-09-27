@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { env } from '../environments/env';
+import { HTTP } from '../http';
 
 export const get = createAsyncThunk('sites/fetch', async (queryparams, thunkAPI) => {
-  const response = await fetch(env.url + 'sites' + queryparams);
-  const data = await response.json();
-  return data;
+  const response = await HTTP.get('sites' + queryparams);
+  return response;
 });
 
 const usersSlice = createSlice({

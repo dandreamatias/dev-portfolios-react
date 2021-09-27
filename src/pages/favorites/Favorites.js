@@ -27,8 +27,8 @@ export default function Favorites() {
   }, []);
 
   useEffect(() => {
-    const items = Object.entries({ ...localStorage }).map(([key, val]) => JSON.parse(val));
-    setCards(items);
+    // const items = Object.entries({ ...localStorage }).map(([key, val]) => JSON.parse(val ?? ''));
+    // setCards(items);
   }, []);
 
   return (

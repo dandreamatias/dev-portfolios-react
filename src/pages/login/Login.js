@@ -3,6 +3,8 @@ import style from './Login.module.css';
 import { useDispatch } from 'react-redux';
 import { hide, updateBtn } from '../../features/navSlice';
 import { useHistory } from 'react-router-dom';
+import { env } from '../../environments/env';
+import { HTTP } from '../../http';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -18,10 +20,18 @@ export default function Login() {
     dispatch(hide());
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem('__token', 'adiwd98u3duaqu73tdq9');
-    history.push('/admin');
+    try {
+      const res = await HTTP.post('admin/login', { username: 'admin', password: 'pippo' });
+      console.log(res);
+      localStorage.setItem('__token', res.access_token);
+      if (res.access_token) {
+        history.push('/admin');
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

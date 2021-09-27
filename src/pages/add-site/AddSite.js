@@ -8,6 +8,7 @@ import { show } from '../../features/toastSlice';
 import resizeFile from './resizer';
 import { env } from '../../environments/env';
 import { hide as hideSidebar, show as showSidebar, updateBtn } from '../../features/navSlice';
+import { HTTP } from '../../http';
 
 export default function AddSite() {
   const dispatch = useDispatch();
@@ -56,20 +57,11 @@ export default function AddSite() {
   };
 
   const handleSendClick = useCallback(async () => {
-    try {
-      const croppedImage = await getCroppedImg(selectedFile, croppedAreaPixels, rotation);
-      const resized = await resizeFile(croppedImage);
-      await fetch(`${env.url}sites`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ image: resized, website: form.website, author: form.author }),
-      });
-      dispatch(show('Thanks for your submission 🥰'));
-      history.push('/daily-mix');
-    } catch (e) {}
+    const croppedImage = await getCroppedImg(selectedFile, croppedAreaPixels, rotation);
+    const resized = await resizeFile(croppedImage);
+    await HTTP.post('sites', { image: resized, website: form.website, author: form.author });
+    dispatch(show('Thanks for your submission 🥰'));
+    history.push('/daily-mix');
   }, [croppedAreaPixels, rotation, form, selectedFile]);
 
   const handleFormChange = (e) => {
