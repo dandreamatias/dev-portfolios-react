@@ -4,16 +4,16 @@ import { env } from '../../environments/env';
 import style from './Admin.module.css';
 import { useDispatch } from 'react-redux';
 import { hide as hideSidebar, updateBtn } from '../../features/navSlice';
+import { httpHeader } from '../../helpers';
+import { HTTP } from '../../http';
 
 export default function Admin() {
   const dispatch = useDispatch();
   const [card, setCard] = useState(undefined);
 
   const getCard = async () => {
-    await fetch(env.url + 'admin/unapproved')
-      .then((r) => r.json())
-      .then((d) => setCard(d))
-      .catch((e) => setCard(undefined));
+    const res = await HTTP.get('admin/unapproved');
+    setCard(res);
   };
   useEffect(() => {
     dispatch(
@@ -27,26 +27,12 @@ export default function Admin() {
   }, []);
 
   const handleApproveClick = async () => {
-    await fetch(env.url + 'admin/approve', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id: card.website }),
-    });
+    await HTTP.post('admin/approve', { id: card.website });
     getCard();
   };
 
   const handleRejectClick = async () => {
-    await fetch(env.url + 'admin/unapprove', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id: card.website }),
-    });
+    await HTTP.get('admin/unapprove', { id: card.website });
     getCard();
   };
 
