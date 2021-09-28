@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { show } from '../../features/toastSlice';
 import resizeFile from './resizer';
-import { env } from '../../environments/env';
 import { hide as hideSidebar, show as showSidebar, updateBtn } from '../../features/navSlice';
 import { HTTP } from '../../http';
 

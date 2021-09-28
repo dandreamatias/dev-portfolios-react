@@ -1,18 +1,30 @@
 import { useEffect, useState } from 'react';
 import Card from '../../components/card/Card';
-import { env } from '../../environments/env';
 import style from './Admin.module.css';
 import { useDispatch } from 'react-redux';
 import { hide as hideSidebar, updateBtn } from '../../features/navSlice';
-import { httpHeader } from '../../helpers';
 import { HTTP } from '../../http';
+import { useHistory } from 'react-router-dom';
+import { show } from '../../features/toastSlice';
 
 export default function Admin() {
   const dispatch = useDispatch();
+  let history = useHistory();
   const [card, setCard] = useState(undefined);
 
   const getCard = async () => {
     const res = await HTTP.get('admin/unapproved');
+    if (res === undefined) {
+      // 401 return undefined
+      history.push('/login');
+      return;
+    }
+    if (Object.keys(res).length === 0) {
+      // no more sites to check
+      history.push('/');
+      dispatch(show('No more cards to check'));
+      return;
+    }
     setCard(res);
   };
   useEffect(() => {
@@ -23,16 +35,16 @@ export default function Admin() {
       })
     );
     dispatch(hideSidebar());
-    getCard();
+    return getCard();
   }, []);
 
   const handleApproveClick = async () => {
-    await HTTP.post('admin/approve', { id: card.website });
+    await HTTP.put('admin/approve', { id: card.website });
     getCard();
   };
 
   const handleRejectClick = async () => {
-    await HTTP.get('admin/unapprove', { id: card.website });
+    await HTTP.delete('admin/remove', { id: card.website });
     getCard();
   };
 
@@ -53,6 +65,7 @@ export default function Admin() {
           <>
             <Card author={card.author} url={card.website} image={card.image} />
             <iframe
+              className={style.iframe}
               src={card.website}
               title='website'
               width='640'

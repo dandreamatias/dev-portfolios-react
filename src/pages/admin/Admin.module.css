@@ -20,3 +20,23 @@
   display: flex;
   justify-content: space-around;
 }
+
+@media screen and (max-width: 1400px) {
+  .container {
+    padding: 5rem 1rem 0;
+  }
+  .buttonContainer {
+    padding: 0 0 1rem;
+    gap: 1rem;
+  }
+
+  .cardPreviewContainer {
+    flex-direction: column;
+  }
+
+  .iframe {
+    height: auto !important;
+    max-width: 100% !important;
+    aspect-ratio: 1 !important;
+  }
+}
