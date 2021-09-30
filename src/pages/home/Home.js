@@ -74,7 +74,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className={style.footer}>build with ❤️ by dandreamatias</div>
+      <div className={style.footer}>©DevPortfolios2021</div>
     </main>
   );
 }

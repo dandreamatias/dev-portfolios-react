@@ -8,7 +8,11 @@ export default function Nav() {
   const navButton = useSelector((state) => state.nav.button);
   const dispatch = useDispatch();
 
-  const handleClick = () => (visible ? dispatch(hide()) : dispatch(show()));
+  const handleClick = () => {
+    if (window.innerWidth < 1080) {
+      visible ? dispatch(hide()) : dispatch(show());
+    }
+  };
 
   return (
     <nav className={navStyle.navbar}>
