@@ -3,13 +3,13 @@ import ContextMenuBtn from '../context-menu/ContexMenuBtn';
 import { useState } from 'react';
 import style from './Card.module.css';
 
-export default function Card({ author, url, image }) {
+export default function Card({ author, url, photo }) {
   const [selected, setSelected] = useState(localStorage.getItem(url));
   const [liked, setLiked] = useState(false);
 
   const handleClick = (like) => {
     if (like) {
-      localStorage.setItem(url, JSON.stringify({ author, url, image }));
+      localStorage.setItem(url, JSON.stringify({ author, url, photo }));
     } else {
       localStorage.removeItem(url);
     }
@@ -31,7 +31,7 @@ export default function Card({ author, url, image }) {
           like();
           handleClick(true);
         }}
-        src={image}
+        src={photo}
         alt=''
       />
       <div className={style.card__info}>

@@ -1,8 +1,6 @@
 import { env } from './environments/env';
 
 export class HTTP {
-  constructor() {}
-
   static header() {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');

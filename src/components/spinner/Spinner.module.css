@@ -1,0 +1,17 @@
+.rotate {
+  height: 45%;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  border: 0.15rem solid white;
+  border-bottom-color: transparent;
+  animation: rotate 0.5s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
