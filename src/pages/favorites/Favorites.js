@@ -35,8 +35,8 @@ export default function Favorites() {
 
   return (
     <main className='main'>
-      {cards.map(({ author, website, image }) => (
-        <Card key={website} author={author} url={website} id={website} image={image} />
+      {cards.map(({ author, url, photo }) => (
+        <Card key={url} author={author} url={url} id={url} photo={photo} />
       ))}
     </main>
   );

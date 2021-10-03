@@ -39,12 +39,12 @@ export default function Admin() {
   }, []);
 
   const handleApproveClick = async () => {
-    await HTTP.put('admin/approve', { id: card.website });
+    await HTTP.put('admin/approve', { id: card.url });
     getCard();
   };
 
   const handleRejectClick = async () => {
-    await HTTP.delete('admin/remove', { id: card.website });
+    await HTTP.delete('admin/remove', { id: card.url });
     getCard();
   };
 
@@ -63,11 +63,11 @@ export default function Admin() {
       <div className={style.cardPreviewContainer}>
         {card && (
           <>
-            <Card author={card.author} url={card.website} image={card.image} />
+            <Card author={card.author} url={card.url} photo={card.photo} />
             <iframe
               className={style.iframe}
-              src={card.website}
-              title='website'
+              src={card.url}
+              title='url'
               width='640'
               height='583'
               style={{ border: '0px', backgroundColor: '#333', marginBottom: '2rem' }}></iframe>

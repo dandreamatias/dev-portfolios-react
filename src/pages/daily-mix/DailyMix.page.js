@@ -40,9 +40,9 @@ export default function DailyMixPage() {
 
   return (
     <main className='main'>
-      {cards.map(({ author, website, image, hasMore, isLazy }) =>
+      {cards.map(({ author, url, photo, hasMore, isLazy }) =>
         !isLazy ? (
-          <Card key={website + Math.random()} author={author} url={website} image={image} />
+          <Card key={url} author={author} url={url} photo={photo} />
         ) : (
           <LazyCard key={'__end__'} hasMore={hasMore} />
         )
