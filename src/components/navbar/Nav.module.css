@@ -39,13 +39,6 @@ a.add-btn {
   padding: 2rem 0 0;
 }
 
-.bottom {
-  position: absolute;
-  bottom: 0rem;
-  font-weight: 700;
-  color: rgb(0, 0, 0);
-}
-
 .aside ul {
   list-style: none;
 }
@@ -113,5 +106,3 @@ a.add-btn {
     padding: 0.65rem 2.25rem;
   }
 }
-/* <a href='https://www.freepik.com/vectors/design'>Design vector created by stories - www.freepik.com</a> */
-/* <a href='https://www.freepik.com/vectors/computer'>Computer vector created by macrovector - www.freepik.com</a> */

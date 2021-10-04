@@ -6,12 +6,10 @@ export const get = createAsyncThunk('sites/fetch', async (queryparams, thunkAPI)
   return response;
 });
 
-const usersSlice = createSlice({
+const sitesSlice = createSlice({
   name: 'sites',
   initialState: { cards: [{ hasMore: true, isLazy: true }], start: 0, loading: false },
-  reducers: {
-    // standard reducer logic, with auto-generated action types per reducer
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(get.fulfilled, (state, action) => {
       state.cards = [
@@ -29,4 +27,4 @@ const usersSlice = createSlice({
   },
 });
 
-export default usersSlice.reducer;
+export default sitesSlice.reducer;

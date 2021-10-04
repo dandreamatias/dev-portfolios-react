@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { get } from '../../features/prova';
+import { get } from '../../features/sitesSlice';
 import style from './LazyCard.module.css';
 
-export default function CardLucid({ hasMore }) {
+export default function LazyCard({ hasMore }) {
   const cardContainer = useRef(null);
   const start = useSelector((state) => state.sites.start);
   const loading = useSelector((state) => state.sites.loading);
@@ -28,7 +28,7 @@ export default function CardLucid({ hasMore }) {
   return hasMore ? (
     <div ref={cardContainer} className={style['lucid-card-container']}>
       <div className={style.card}>
-        <div className={style['as-image'] + ' ' + style.lucid}></div>
+        <div className={`${style['as-image']} ${style.lucid}`}></div>
         <div className={style.card__info}></div>
         <div className={style.card__footer}>
           <i className='fas fa-star like-btn lucid'></i>

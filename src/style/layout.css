@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --alta-primary-color: rgb(33, 102, 239);
+  --alta-secondary-color: #112d4e;
+  --alta-font-color: #424242;
+  --alta-border-radius: 0.25rem;
+  --alta-border: 1px solid #dfdfdf;
+  --alta-progress-value: #abe2bb;
+  --alta-progress-background: #f3f3f3;
+}
+
+body {
+  background-color: #f1f1f1;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 1rem 2rem;
+}
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+  color: #5f6368;
+}
+
+.fas {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1080px) {
+  .main {
+    padding: 5rem 1rem 2rem;
+  }
+}
