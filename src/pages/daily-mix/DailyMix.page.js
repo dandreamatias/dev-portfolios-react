@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Card from '../../components/card/Card';
 import LazyCard from '../../components/lazy-card/LazyCard';
 import { useSelector, useDispatch } from 'react-redux';
-import { get } from '../../features/prova';
+import { get } from '../../features/sitesSlice';
 import { hide, show, updateBtn } from '../../features/navSlice';
 
 export default function DailyMixPage() {
@@ -41,10 +41,10 @@ export default function DailyMixPage() {
   return (
     <main className='main'>
       {cards.map(({ author, url, photo, hasMore, isLazy }) =>
-        !isLazy ? (
-          <Card key={url} author={author} url={url} photo={photo} />
-        ) : (
+        isLazy ? (
           <LazyCard key={'__end__'} hasMore={hasMore} />
+        ) : (
+          <Card key={url} author={author} url={url} photo={photo} />
         )
       )}
     </main>

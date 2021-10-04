@@ -1,4 +1,8 @@
 import './App.css';
+import './style/layout.css';
+import './style/form.css';
+import './style/buttons.css';
+import './style/utils.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import AddSite from './pages/add-site/AddSite';

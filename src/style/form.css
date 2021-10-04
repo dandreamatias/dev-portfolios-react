@@ -1,0 +1,56 @@
+.input,
+.textarea {
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: var(--alta-border-radius);
+  font-size: 0.9rem;
+  border: var(--alta-border);
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  height: 2.5rem;
+}
+
+.textarea {
+  height: auto;
+  resize: vertical;
+}
+
+.input[type='checkbox'],
+.input[type='radio'] {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  border-radius: 50%;
+}
+
+.input-group {
+  position: relative;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.input-group .label {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  top: 0.75rem;
+  font-size: 1rem;
+}
+
+.input-group .input:placeholder-shown + label {
+  position: absolute;
+  display: inline-block;
+  left: 0.5rem;
+  top: 1.65rem;
+  font-size: 1rem;
+}
+.input-group .input + .label,
+.input-group .input:focus + .label {
+  top: 0.25rem;
+  left: 0.5rem;
+  font-size: 0.7rem;
+  background-color: inherit;
+  padding: 0 0.25rem;
+  margin-left: -0.25rem;
+  transition: all 0.3s;
+}

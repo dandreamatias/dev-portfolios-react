@@ -24,9 +24,11 @@ export default function Nav() {
         <Link to='/'>DevPortfolios </Link>
       </h1>
 
-      <Link className={navButton.show ? navStyle['add-btn'] : 'hidden'} to={navButton.path}>
-        {navButton.text}
-      </Link>
+      {navButton.show && (
+        <Link className={navStyle['add-btn']} to={navButton.path}>
+          {navButton.text}
+        </Link>
+      )}
       <aside className={(visible ? navStyle.open : 'hidden') + ' ' + navStyle.aside}>
         <ul>
           <NavLink exact to='/daily-mix' activeClassName={navStyle['selected']}>
@@ -34,12 +36,6 @@ export default function Nav() {
               <i className='fas fa-random'></i> Daily Mix
             </li>
           </NavLink>
-          {/* <li>
-            <NavLink exact to='/highlighted' activeClassName={navStyle['selected']}>
-              <i className='fas fa-highlighter'></i> Highlighted
-            </NavLink>
-          </li> */}
-
           <NavLink exact to='/favorites' activeClassName={navStyle['selected']}>
             <li onClick={handleClick}>
               <i className='fas fa-star'></i> Favorites
@@ -50,10 +46,6 @@ export default function Nav() {
               <i className='fas fa-plus'></i> Add website
             </li>
           </NavLink>
-
-          <li className={navStyle.bottom}>
-            <i className='fas fa-donate'></i> Support
-          </li>
         </ul>
       </aside>
     </nav>

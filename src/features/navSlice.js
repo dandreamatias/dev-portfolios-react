@@ -16,7 +16,5 @@ export const navSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { hide, show, updateBtn } = navSlice.actions;
-
 export default navSlice.reducer;
