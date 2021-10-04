@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const toastSlice = createSlice({
   name: 'toast',
-  initialState: { visible: false, text: '' },
+  initialState: { visible: false, text: '', type: 'standard' },
   reducers: {
     show: (state, action) => {
       state.visible = true;

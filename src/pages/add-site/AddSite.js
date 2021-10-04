@@ -8,11 +8,13 @@ import { show } from '../../features/toastSlice';
 import resizeFile from './resizer';
 import { hide as hideSidebar, show as showSidebar, updateBtn } from '../../features/navSlice';
 import { HTTP } from '../../http';
+import { Spinner } from '../../components/spinner/Spinner';
 
 export default function AddSite() {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [form, setForm] = useState({ author: '', website: '' });
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ author: '', url: '' });
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -54,12 +56,20 @@ export default function AddSite() {
     reader.readAsDataURL(file);
   };
 
+  const isFormvalid = () => {
+    return !!form.url && !!form.author && !!selectedFile;
+  };
+
   const handleSendClick = useCallback(async () => {
-    const croppedImage = await getCroppedImg(selectedFile, croppedAreaPixels, 0);
-    const resized = await resizeFile(croppedImage);
-    await HTTP.post('sites', { image: resized, website: form.website, author: form.author });
-    dispatch(show('Thanks for your submission 🥰'));
-    history.push('/daily-mix');
+    if (isFormvalid()) {
+      setLoading(true);
+      const croppedImage = await getCroppedImg(selectedFile, croppedAreaPixels, 0);
+      const resized = await resizeFile(croppedImage);
+      await HTTP.post('sites', { photo: resized, url: form.url, author: form.author });
+      dispatch(show('Thanks for your submission 🥰'));
+      history.push('/daily-mix');
+      setLoading(false);
+    } else dispatch(show('All the fields are mandatory'));
   }, [croppedAreaPixels, form, selectedFile]);
 
   const handleFormChange = (e) => {
@@ -71,7 +81,7 @@ export default function AddSite() {
       <div className='add-site'>
         <div className='add-image-container'>
           <span className='upload-image-message'>
-            <i className='fas fa-upload'></i> Upload Image
+            <i className='fas fa-upload'></i> Upload Image*
           </span>
           {selectedFile ? (
             <Cropper
@@ -107,7 +117,7 @@ export default function AddSite() {
             name='author'
           />
           <label className='label' htmlFor='ok'>
-            Author
+            Author*
           </label>
         </div>
         <div className='input-group'>
@@ -117,15 +127,23 @@ export default function AddSite() {
             onChange={handleFormChange}
             placeholder='&nbsp;'
             type='text'
-            value={form.website}
-            name='website'
+            value={form.url}
+            name='url'
           />
           <label className='label' htmlFor='asd'>
-            website Url
+            Website Url*
           </label>
         </div>
-        <button className='button w-100 send-btn' onClick={handleSendClick}>
-          Publish
+        <button
+          className='button w-100 send-btn'
+          onClick={(e) => (loading ? null : handleSendClick(e))}>
+          {loading ? (
+            <>
+              <Spinner /> Uploading...
+            </>
+          ) : (
+            'Publish'
+          )}
         </button>
       </div>
     </main>
