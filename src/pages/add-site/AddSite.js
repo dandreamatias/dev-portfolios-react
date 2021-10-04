@@ -17,7 +17,6 @@ export default function AddSite() {
   const [form, setForm] = useState({ author: '', url: '' });
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [rotation, setRotation] = useState(0);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   let history = useHistory();
 
@@ -64,14 +63,14 @@ export default function AddSite() {
   const handleSendClick = useCallback(async () => {
     if (isFormvalid()) {
       setLoading(true);
-      const croppedImage = await getCroppedImg(selectedFile, croppedAreaPixels, rotation);
+      const croppedImage = await getCroppedImg(selectedFile, croppedAreaPixels, 0);
       const resized = await resizeFile(croppedImage);
       await HTTP.post('sites', { photo: resized, url: form.url, author: form.author });
       dispatch(show('Thanks for your submission 🥰'));
       history.push('/daily-mix');
       setLoading(false);
     } else dispatch(show('All the fields are mandatory'));
-  }, [croppedAreaPixels, rotation, form, selectedFile]);
+  }, [croppedAreaPixels, form, selectedFile]);
 
   const handleFormChange = (e) => {
     setForm((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
@@ -90,12 +89,10 @@ export default function AddSite() {
               crop={crop}
               className='cropper'
               zoom={zoom}
-              rotation={rotation}
               style={{ width: '100%' }}
               aspect={4 / 3}
-              objectFit={'vertical-cover'}
+              objectFit={'horizontal-cover'}
               onCropChange={setCrop}
-              onRotationChange={setRotation}
               onCropComplete={onCropComplete}
               onZoomChange={setZoom}
             />
