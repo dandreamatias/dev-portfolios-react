@@ -21,7 +21,7 @@ export default function Home() {
     if (start === 0) {
       dispatch(get('?start=0'));
     }
-  }, []);
+  }, [start]);
   return (
     <main className={style.container}>
       <div className={style.header}>
@@ -74,7 +74,11 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div className={style.footer}>©DevPortfolios2021</div>
+      <footer className={style.footer}>
+        <a href='https://www.linkedin.com/in/matiasdandrea318'>Contact Author</a>
+        ©DevPortfolios2021
+        <a href='https://github.com/dandreamatias/dev-portfolios-react'>DevPortfolios Github</a>
+      </footer>
     </main>
   );
 }

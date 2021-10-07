@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import Cropper from 'react-easy-crop';
-import './AddSite.css';
+import AddSiteStyle from './AddSite.module.css';
 import getCroppedImg from './cropImage';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -9,12 +9,14 @@ import resizeFile from './resizer';
 import { hide as hideSidebar, show as showSidebar, updateBtn } from '../../features/navSlice';
 import { HTTP } from '../../http';
 import { Spinner } from '../../components/spinner/Spinner';
+import { termAndConditions } from '../../helpers';
 
 export default function AddSite() {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
+  const [toogleTerms, setToogleterms] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ author: '', url: '' });
+  const [form, setForm] = useState({ author: '', url: '', conditions: false });
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -78,9 +80,9 @@ export default function AddSite() {
 
   return (
     <main className='main'>
-      <div className='add-site'>
-        <div className='add-image-container'>
-          <span className='upload-image-message'>
+      <div className={AddSiteStyle['add-site']}>
+        <div className={AddSiteStyle['add-image-container']}>
+          <span className={AddSiteStyle['upload-image-message']}>
             <i className='fas fa-upload'></i> Upload Image*
           </span>
           {selectedFile ? (
@@ -99,7 +101,7 @@ export default function AddSite() {
           ) : (
             <input
               style={{ display: 'block', width: ' 100%' }}
-              className='upload-input cursor-pointer'
+              className={AddSiteStyle['upload-input'] + ' cursor-pointer'}
               onChange={(e) => handleChange(e.target.files[0])}
               type='file'
               accept='.jpg,.jpeg,.png'
@@ -134,8 +136,27 @@ export default function AddSite() {
             Website Url*
           </label>
         </div>
+        <div className='input-group'>
+          <input
+            type='checkbox'
+            name='conditions'
+            onChange={handleFormChange}
+            value={form.conditions}
+          />{' '}
+          I accept{' '}
+          <b className='cursor-pointer' onClick={() => setToogleterms(!toogleTerms)}>
+            term and conditions
+          </b>
+          {toogleTerms && (
+            <textarea
+              rows='3'
+              value={termAndConditions}
+              readOnly
+              className={AddSiteStyle['termAndConditions'] + ' textarea'}></textarea>
+          )}
+        </div>
         <button
-          className='button w-100 send-btn'
+          className={`button w-100 ` + AddSiteStyle['send-btn']}
           onClick={(e) => (loading ? null : handleSendClick(e))}>
           {loading ? (
             <>
