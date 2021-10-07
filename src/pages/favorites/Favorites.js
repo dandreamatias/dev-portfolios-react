@@ -35,6 +35,7 @@ export default function Favorites() {
 
   return (
     <main className='main'>
+      {!cards.length && <div>No favorites, double tap on a site to add one</div>}
       {cards.map(({ author, url, photo }) => (
         <Card key={url} author={author} url={url} id={url} photo={photo} />
       ))}
