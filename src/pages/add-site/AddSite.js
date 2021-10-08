@@ -135,6 +135,16 @@ export default function AddSite() {
           <label className='label' htmlFor='conditions'>
             Website Url*
           </label>
+          <small
+            style={{
+              position: 'absolute',
+              left: '.5rem',
+              top: '100%',
+              fontSize: '.75rem',
+              color: '#444',
+            }}>
+            format: https://www.example.com
+          </small>
         </div>
         <div className='input-group'>
           <input
