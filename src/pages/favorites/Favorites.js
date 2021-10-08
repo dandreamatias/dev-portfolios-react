@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Card from '../../components/card/Card';
 import { useDispatch } from 'react-redux';
-import { hide, show } from '../../features/navSlice';
+import { hide, show, updateBtn } from '../../features/navSlice';
 
 export default function Favorites() {
   const [cards, setCards] = useState([]);
@@ -11,6 +11,13 @@ export default function Favorites() {
     if (window.innerWidth > 1080) {
       dispatch(show());
     }
+    dispatch(
+      updateBtn({
+        show: true,
+        text: 'EXPLORE',
+        path: '/daily-mix',
+      })
+    );
   }, []);
 
   useEffect(() => {
