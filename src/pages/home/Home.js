@@ -75,9 +75,9 @@ export default function Home() {
         </div>
       </div>
       <footer className={style.footer}>
-        <a href='https://www.linkedin.com/in/matiasdandrea318'>Contact Author</a>
+        <a href='https://www.linkedin.com/in/matiasdandrea318'>Author</a>
         ©DevPortfolios2021
-        <a href='https://github.com/dandreamatias/dev-portfolios-react'>DevPortfolios Github</a>
+        <a href='https://github.com/dandreamatias/dev-portfolios-react'>Github</a>
       </footer>
     </main>
   );
