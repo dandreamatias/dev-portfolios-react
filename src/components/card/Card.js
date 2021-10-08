@@ -2,10 +2,25 @@ import StartBtn from '../StarBtn';
 import ContextMenuBtn from '../context-menu/ContexMenuBtn';
 import { useState } from 'react';
 import style from './Card.module.css';
+import { useSingleAndDoubleClick } from '../../hooks/use-single-and-doubleclick';
 
 export default function Card({ author, url, photo }) {
   const [selected, setSelected] = useState(localStorage.getItem(url));
   const [liked, setLiked] = useState(false);
+
+  const click = useSingleAndDoubleClick(
+    () => {
+      Object.assign(document.createElement('a'), {
+        target: '_blank',
+        href: url,
+      }).click();
+    },
+    (e) => {
+      e.stopPropagation();
+      like();
+      handleClick(true);
+    }
+  );
 
   const handleClick = (like) => {
     if (like) {
@@ -13,7 +28,6 @@ export default function Card({ author, url, photo }) {
     } else {
       localStorage.removeItem(url);
     }
-
     setSelected(like);
   };
 
@@ -25,15 +39,7 @@ export default function Card({ author, url, photo }) {
   return (
     <div className={style.card}>
       {liked && <i className='fas fa-star like-btn selected fade-like'></i>}
-      <img
-        onDoubleClick={(e) => {
-          e.stopPropagation();
-          like();
-          handleClick(true);
-        }}
-        src={photo}
-        alt=''
-      />
+      <img onClick={click} src={photo} alt={`${author} webiste preview`} />
       <div className={style.card__info}>
         <h1>{author}</h1>
         <ContextMenuBtn id={url} />

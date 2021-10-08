@@ -118,21 +118,21 @@ export default function AddSite() {
             type='text'
             name='author'
           />
-          <label className='label' htmlFor='ok'>
+          <label className='label' htmlFor='url'>
             Author*
           </label>
         </div>
         <div className='input-group'>
           <input
             className='input'
-            id='asd'
+            id='url'
             onChange={handleFormChange}
             placeholder='&nbsp;'
             type='text'
             value={form.url}
             name='url'
           />
-          <label className='label' htmlFor='asd'>
+          <label className='label' htmlFor='conditions'>
             Website Url*
           </label>
         </div>
