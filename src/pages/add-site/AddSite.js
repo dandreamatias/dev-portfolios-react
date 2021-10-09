@@ -111,14 +111,14 @@ export default function AddSite() {
         <div className='input-group'>
           <input
             className='input'
-            id='ok'
+            id='author'
             placeholder='&nbsp;'
             value={form.author}
             onChange={handleFormChange}
             type='text'
             name='author'
           />
-          <label className='label' htmlFor='url'>
+          <label className='label' htmlFor='author'>
             Author*
           </label>
         </div>
@@ -132,7 +132,7 @@ export default function AddSite() {
             value={form.url}
             name='url'
           />
-          <label className='label' htmlFor='conditions'>
+          <label className='label' htmlFor='url'>
             Website Url*
           </label>
           <small
