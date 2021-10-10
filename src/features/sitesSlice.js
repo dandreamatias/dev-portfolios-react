@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { HTTP } from '../http';
+import { devPortfoliosApi } from '../http';
 
-export const get = createAsyncThunk('sites/fetch', async (queryparams, thunkAPI) => {
-  const response = await HTTP.get('sites' + queryparams);
+export const get = createAsyncThunk('sites/fetch', async (start, thunkAPI) => {
+  const [response, errors] = await devPortfoliosApi.get('sites', { start });
+  if (errors) return [];
   return response;
 });
 

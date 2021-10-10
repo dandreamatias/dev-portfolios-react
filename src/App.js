@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './components/navbar/Nav';
 import { Toast } from './components/toast/Toast';
 import ProtectedRoute from './components/ProtectedRoute';
+import history from './history.js';
 
 const Home = lazy(() => import('./pages/home/Home'));
 const Login = lazy(() => import('./pages/login/Login'));
@@ -18,7 +19,7 @@ const Admin = lazy(() => import('./pages/admin/Admin'));
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <Nav />
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
