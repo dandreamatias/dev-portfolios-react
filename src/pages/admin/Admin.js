@@ -3,27 +3,19 @@ import Card from '../../components/card/Card';
 import style from './Admin.module.css';
 import { useDispatch } from 'react-redux';
 import { hide as hideSidebar, updateBtn } from '../../features/navSlice';
-import { HTTP } from '../../http';
-import { useHistory } from 'react-router-dom';
+import { devPortfoliosApi } from '../../http';
 import { show } from '../../features/toastSlice';
 
 export default function Admin() {
   const dispatch = useDispatch();
-  let history = useHistory();
   const [card, setCard] = useState(undefined);
 
   const getCard = async () => {
-    const res = await HTTP.get('admin/unapproved');
-    if (res === undefined) {
-      // 401 return undefined
-      history.push('/login');
-      return;
-    }
+    const [res, error] = await devPortfoliosApi.get('admin/unapproved');
+    if (error) return;
     if (Object.keys(res).length === 0) {
-      // no more sites to check
-      history.push('/');
       dispatch(show('No more cards to check'));
-      return;
+      return setCard(null);
     }
     setCard(res);
   };
@@ -39,12 +31,12 @@ export default function Admin() {
   }, []);
 
   const handleApproveClick = async () => {
-    await HTTP.put('admin/approve', { id: card.url });
+    await devPortfoliosApi.put('admin/approve', { id: card.url });
     getCard();
   };
 
   const handleRejectClick = async () => {
-    await HTTP.delete('admin/remove', { id: card.url });
+    await devPortfoliosApi.delete('admin/remove', { id: card.url });
     getCard();
   };
 

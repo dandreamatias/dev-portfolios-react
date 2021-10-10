@@ -17,9 +17,8 @@ export default function Home() {
         path: '/daily-mix',
       })
     );
-
     if (start === 0) {
-      dispatch(get('?start=0'));
+      dispatch(get(0));
     }
   }, [start]);
   return (

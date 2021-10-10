@@ -16,7 +16,7 @@ export default function LazyCard({ hasMore }) {
         const container = cardContainer?.current?.getBoundingClientRect();
         if (container.top - container.height < container.height) {
           time = Date.now();
-          dispatch(get('?start=' + start));
+          dispatch(get(start));
         }
       }
     };

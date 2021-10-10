@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { show } from '../../features/toastSlice';
 import resizeFile from './resizer';
 import { hide as hideSidebar, show as showSidebar, updateBtn } from '../../features/navSlice';
-import { HTTP } from '../../http';
+import { devPortfoliosApi } from '../../http';
 import { Spinner } from '../../components/spinner/Spinner';
 import { termAndConditions } from '../../helpers';
 
@@ -67,7 +67,11 @@ export default function AddSite() {
       setLoading(true);
       const croppedImage = await getCroppedImg(selectedFile, croppedAreaPixels, 0);
       const resized = await resizeFile(croppedImage);
-      await HTTP.post('sites', { photo: resized, url: form.url, author: form.author });
+      await devPortfoliosApi.post(
+        'sites',
+        { photo: resized, url: form.url, author: form.author },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
       dispatch(show('Thanks for your submission 🥰'));
       history.push('/daily-mix');
       setLoading(false);

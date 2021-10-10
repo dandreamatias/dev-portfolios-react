@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import style from './Login.module.css';
 import { useDispatch } from 'react-redux';
 import { hide, updateBtn } from '../../features/navSlice';
-import { useHistory } from 'react-router-dom';
-import { HTTP } from '../../http';
+import { devPortfoliosApi } from '../../http';
+import history from '../../history';
+import { show } from '../../features/toastSlice';
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -11,7 +12,6 @@ export default function Login() {
     username: '',
   });
   const dispatch = useDispatch();
-  let history = useHistory();
 
   useEffect(() => {
     dispatch(
@@ -29,14 +29,17 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await HTTP.post('admin/login', {
+    const [res, error] = await devPortfoliosApi.post('admin/login', {
       username: form.username,
       password: form.password,
     });
-    localStorage.setItem('__token', res.access_token);
-    if (res.access_token) {
-      history.push('/admin');
+    if (error) {
+      dispatch(show(error.response.status));
+      return;
     }
+    localStorage.setItem('__token', res.access_token);
+    history.push('/admin');
+    window.location.reload();
   };
 
   return (

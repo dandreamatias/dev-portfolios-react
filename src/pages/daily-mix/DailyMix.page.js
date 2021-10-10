@@ -21,7 +21,7 @@ export default function DailyMixPage() {
       })
     );
     if (cards && cards.length === 1) {
-      dispatch(get('?start=0'));
+      dispatch(get(0));
     }
   }, []);
 
